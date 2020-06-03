@@ -9,13 +9,41 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        Text("Hello, World!")
-    }
+	var body: some View {
+			HStack {
+				ForEach(0..<4, content: { index in
+					CardView(isFaceUp: index > 2)
+				})
+		}
+		.font(.largeTitle)
+		.padding()
+		.foregroundColor(Color.orange)
+	}
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+struct CardView: View {
+	var isFaceUp = false
+	var body: some View {
+		ZStack {
+			if isFaceUp {
+			RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
+			RoundedRectangle(cornerRadius: 10.0).stroke()
+			
+			Text("🐵")
+				
+			} else {
+			RoundedRectangle(cornerRadius: 10.0).fill()
+			}
+		}
+	}
 }
+
+
+
+
+struct ContentView_Previews: PreviewProvider {
+	static var previews: some View {
+		ContentView()
+	}
+}
+
