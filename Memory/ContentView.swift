@@ -12,19 +12,23 @@ struct ContentView: View {
 	@ObservedObject var emojiGame: EmojiMemoryGame
 	
 	var body: some View {
-			HStack {
-				ForEach(emojiGame.cards, content: { card in
-					CardView(card: card)
-						.onTapGesture {
-							self.emojiGame.choose(card: card)
-					}
-				})
+		HStack {
+			ForEach(emojiGame.cards, content: { card in
+				CardView(card: card)
+					.onTapGesture {
+						self.emojiGame.choose(card: card)
+				}
+			})
 		}
 		.padding()
 		.foregroundColor(Color.orange)
 	}
 }
 
+
+
+
+/// Sub-view for a card, type being Model's Card
 struct CardView: View {
 	var card: MemoryGame<String>.Card
 	
@@ -37,18 +41,20 @@ struct CardView: View {
 	func viewBody(for size: CGSize) -> some View {
 		ZStack {
 			if card.isFaceUp {
-				RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
-				RoundedRectangle(cornerRadius: 10.0).stroke()
+				RoundedRectangle(cornerRadius: radius).fill(Color.white)
+				RoundedRectangle(cornerRadius: radius).stroke()
 				
 				Text(card.cardContent)
 				
 			} else {
-				RoundedRectangle(cornerRadius: 10.0).fill()
+				RoundedRectangle(cornerRadius: radius).fill()
 			}
 		}
-		.font(.system(size: min(size.width,size.height)))
-		
+		.font(.system(size: k*min(size.width,size.height)))
 	}
+	
+	let radius:CGFloat = 10.0
+	let k:CGFloat = 0.75
 }
 
 
