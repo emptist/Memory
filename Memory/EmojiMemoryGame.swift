@@ -8,9 +8,11 @@
 
 import SwiftUI
 
-class EmojiMemoryGame {
+/// View model of the game as a class, since it could be shared among views and also since only classes can conform to ObservableObject protocal
+class EmojiMemoryGame: ObservableObject {
 	
-	private var game: MemoryGame<String> = EmojiMemoryGame.createCards()
+	/// Game model, with @Published property wrapper to catch any mutating on it
+	@Published private var game: MemoryGame<String> = EmojiMemoryGame.createCards()
 	
 	static func createCards() -> MemoryGame<String> {
 		let emojis = ["🐵","🍎","🌮"]
@@ -27,6 +29,10 @@ class EmojiMemoryGame {
 	
 	// MARK: - intent(s)
 	
+	
+	/// Ask model to choose when user tapped a card, and will cause mutating on the model
+	/// - Parameter card: that user tapped on
+	/// - Returns: Void
 	func choose(card:MemoryGame<String>.Card) -> Void {
 		game.choose(card: card)
 	}
