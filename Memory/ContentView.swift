@@ -9,10 +9,15 @@
 import SwiftUI
 
 struct ContentView: View {
+	var emojiGame: EmojiMemoryGame
+	
 	var body: some View {
 			HStack {
-				ForEach(0..<4, content: { index in
-					CardView(isFaceUp: index > 2) // MARK: bogus
+				ForEach(emojiGame.cards, content: { card in
+					CardView(isFaceUp: card.isFaceUp,cardViewContent:card.cardContent)
+						.onTapGesture {
+							self.emojiGame.choose(card: card)
+					}
 				})
 		}
 		.font(.largeTitle)
@@ -22,8 +27,8 @@ struct ContentView: View {
 }
 
 struct CardView: View {
-	var isFaceUp = false
-	var cardViewContent = "🏇🏿"
+	var isFaceUp:Bool
+	var cardViewContent: String
 	
 	var body: some View {
 		ZStack {
@@ -45,7 +50,7 @@ struct CardView: View {
 
 struct ContentView_Previews: PreviewProvider {
 	static var previews: some View {
-		ContentView()
+		ContentView(emojiGame: EmojiMemoryGame())
 	}
 }
 
