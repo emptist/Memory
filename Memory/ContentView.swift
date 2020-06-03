@@ -14,34 +14,40 @@ struct ContentView: View {
 	var body: some View {
 			HStack {
 				ForEach(emojiGame.cards, content: { card in
-					CardView(isFaceUp: card.isFaceUp,cardViewContent:card.cardContent)
+					CardView(card: card)
 						.onTapGesture {
 							self.emojiGame.choose(card: card)
 					}
 				})
 		}
-		.font(.largeTitle)
 		.padding()
 		.foregroundColor(Color.orange)
 	}
 }
 
 struct CardView: View {
-	var isFaceUp:Bool
-	var cardViewContent: String
+	var card: MemoryGame<String>.Card
 	
 	var body: some View {
+		GeometryReader(content: { geometry in
+			self.viewBody(for: geometry.size)
+		})
+	}
+	
+	func viewBody(for size: CGSize) -> some View {
 		ZStack {
-			if isFaceUp {
-			RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
-			RoundedRectangle(cornerRadius: 10.0).stroke()
-			
-			Text(cardViewContent)
+			if card.isFaceUp {
+				RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
+				RoundedRectangle(cornerRadius: 10.0).stroke()
+				
+				Text(card.cardContent)
 				
 			} else {
-			RoundedRectangle(cornerRadius: 10.0).fill()
+				RoundedRectangle(cornerRadius: 10.0).fill()
 			}
 		}
+		.font(.system(size: min(size.width,size.height)))
+		
 	}
 }
 
