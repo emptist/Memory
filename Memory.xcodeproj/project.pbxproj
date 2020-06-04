@@ -17,6 +17,7 @@
 		487B4AB124874D2E00F50391 /* EmojiMemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487B4AB024874D2E00F50391 /* EmojiMemoryGame.swift */; };
 		48C904E02488837E00B616B2 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C904DF2488837E00B616B2 /* GridLayout.swift */; };
 		48C904E22488895C00B616B2 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C904E12488895C00B616B2 /* Grid.swift */; };
+		48C904E42488F83300B616B2 /* Array+Indentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C904E32488F83300B616B2 /* Array+Indentifiable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		487B4AB024874D2E00F50391 /* EmojiMemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMemoryGame.swift; sourceTree = "<group>"; };
 		48C904DF2488837E00B616B2 /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		48C904E12488895C00B616B2 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		48C904E32488F83300B616B2 /* Array+Indentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Indentifiable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				487B4A9C2487436200F50391 /* SceneDelegate.swift */,
 				487B4A9E2487436200F50391 /* ContentView.swift */,
 				48C904E12488895C00B616B2 /* Grid.swift */,
+				48C904E32488F83300B616B2 /* Array+Indentifiable.swift */,
 				487B4AA02487436A00F50391 /* Assets.xcassets */,
 				487B4AA52487436A00F50391 /* LaunchScreen.storyboard */,
 				487B4AA82487436A00F50391 /* Info.plist */,
@@ -162,6 +165,7 @@
 				487B4A9D2487436200F50391 /* SceneDelegate.swift in Sources */,
 				487B4AAF2487494500F50391 /* MemoryGame.swift in Sources */,
 				48C904E02488837E00B616B2 /* GridLayout.swift in Sources */,
+				48C904E42488F83300B616B2 /* Array+Indentifiable.swift in Sources */,
 				487B4A9F2487436200F50391 /* ContentView.swift in Sources */,
 				48C904E22488895C00B616B2 /* Grid.swift in Sources */,
 				487B4AB124874D2E00F50391 /* EmojiMemoryGame.swift in Sources */,

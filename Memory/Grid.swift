@@ -40,17 +40,6 @@ struct Grid<Item,ItemView>: View where Item: Identifiable, ItemView: View {
 }
 
 
-extension Array where Element: Identifiable {
-    func firstIndex(matching:Element) -> Int {
-        for index in 0..<self.count {
-            if self[index].id == matching.id {
-                return index
-            }
-        }
-        return 0 // MARK: - bogus
-    }
-
-}
 //struct Grid_Previews: PreviewProvider {
 //    static var previews: some View {
 //        Grid()
