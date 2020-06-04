@@ -15,10 +15,9 @@ struct MemoryGame<CardContent> {
 	/// Mutating self by change the isFaceUp property of chosen card
 	/// - Parameter card: is player selected card
 	/// - Returns: index of the `card` or nil
-	mutating func choose(card:Card) -> Void {
-		print("card chosen: \(card)")
-
+	mutating func choose(card:Card) {
         if let idx = cards.firstIndex(matching: card) {
+            print("card chosen: \(card)")
             cards[idx].isFaceUp.toggle()
         }
 	}
