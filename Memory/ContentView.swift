@@ -12,16 +12,15 @@ struct ContentView: View {
 	@ObservedObject var emojiGame: EmojiMemoryGame
 	
 	var body: some View {
-		HStack {
-			ForEach(emojiGame.cards, content: { card in
-				CardView(card: card)
-					.onTapGesture {
-						self.emojiGame.choose(card: card)
-				}
-			})
-		}
-		.padding()
-		.foregroundColor(Color.orange)
+		
+        Grid(items: emojiGame.cards, viewForItem: { card in
+            CardView(card: card)
+                .onTapGesture {
+                    self.emojiGame.choose(card: card)
+            }
+        })
+        .padding()
+        .foregroundColor(Color.orange)
 	}
 }
 
