@@ -15,6 +15,7 @@ struct ContentView: View {
 		
         Grid(items: emojiGame.cards, viewForItem: { card in
             CardView(card: card)
+                .padding(0.5)
                 .onTapGesture {
                     self.emojiGame.choose(card: card)
             }
@@ -43,10 +44,13 @@ struct CardView: View {
 				RoundedRectangle(cornerRadius: radius).fill(Color.white)
 				RoundedRectangle(cornerRadius: radius).stroke()
 				
-				Text(card.cardContent)
+				Text(card.content)
 				
 			} else {
-				RoundedRectangle(cornerRadius: radius).fill()
+                if !card.isMatched {
+                    RoundedRectangle(cornerRadius: radius).fill()
+                }
+				
 			}
 		}
 		.font(.system(size: k*min(size.width,size.height)))
