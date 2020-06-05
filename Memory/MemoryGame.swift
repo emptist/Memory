@@ -12,9 +12,7 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
 	var cards:Array<Card>
     var indexOfTheOnlyFaceUpCard: Optional<Int> {
         get {
-            var faceUpCardIndices: Array<Int>
-            faceUpCardIndices = cards.indices.filter({cards[$0].isFaceUp})
-            return faceUpCardIndices.onlyOne ? faceUpCardIndices.first : nil
+            cards.indices.filter({cards[$0].isFaceUp}).onlyThingOrNil
         }
         set {
             for index in cards.indices {

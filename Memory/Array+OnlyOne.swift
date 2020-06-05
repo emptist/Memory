@@ -9,7 +9,7 @@
 import Foundation
 
 extension Array {
-    var onlyOne: Bool {
-        self.count == 1
+    var onlyThingOrNil: Element? {
+        count == 1 ? first : nil
     }
 }
