@@ -9,8 +9,8 @@
 import Foundation
 
 struct MemoryGame<CardContent> where CardContent: Equatable {
-	var cards:Array<Card>
-    var indexOfTheOnlyFaceUpCard: Optional<Int> {
+	private(set) var cards:Array<Card>
+    private var indexOfTheOnlyFaceUpCard: Optional<Int> {
         get {
             cards.indices.filter({cards[$0].isFaceUp}).onlyThingOrNil
         }

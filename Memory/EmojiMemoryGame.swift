@@ -12,9 +12,9 @@ import SwiftUI
 class EmojiMemoryGame: ObservableObject {
 	
 	/// Game model, with @Published property wrapper to catch any mutating on it
-	@Published private var game: MemoryGame<String> = EmojiMemoryGame.createCards()
+	@Published private var game: MemoryGame<String> = EmojiMemoryGame.createGame()
 	
-	static func createCards() -> MemoryGame<String> {
+	private static func createGame() -> MemoryGame<String> {
 		let emojis = ["🐵","🍎","🌮"]
 		return MemoryGame<String>(numberPairsOfCards:emojis.count, cardFactor: {pairIndex in
 			emojis[pairIndex]

@@ -10,8 +10,8 @@ import SwiftUI
 
 /// Grid of items, with automatic sizing and positioning. The manual defined init func is not needed. However, if it's used then the wrapper @escaping must be used
 struct Grid<Item,ItemView>: View where Item: Identifiable, ItemView: View {
-    var items: Array<Item>
-    var viewForItem: (Item) -> ItemView // MARK: - @escaping not needed here
+    private(set) var items: Array<Item>
+    private(set) var viewForItem: (Item) -> ItemView // MARK: - @escaping not needed here
     
 //    init(_ items:[Item], content viewForItem: @escaping (Item) -> ItemView) {
 //        self.items = items
@@ -24,13 +24,13 @@ struct Grid<Item,ItemView>: View where Item: Identifiable, ItemView: View {
         })
     }
     
-    func viewBody(for layout: GridLayout) -> some View {
+    private func viewBody(for layout: GridLayout) -> some View {
         ForEach(items, content: { item in
             self.viewBody(for: item, in: layout)
         })
     }
     
-    func viewBody(for item: Item,in layout: GridLayout) -> some View {
+    private func viewBody(for item: Item,in layout: GridLayout) -> some View {
         let index = items.firstIndex(matching: item)! // an index should always be there
         return self.viewForItem(item)
             .frame(width: layout.itemSize.width, height:layout.itemSize.height)
