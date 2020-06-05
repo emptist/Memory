@@ -10,7 +10,18 @@ import Foundation
 
 struct MemoryGame<CardContent> where CardContent: Equatable {
 	var cards:Array<Card>
-    var indexOfTheOnlyFaceUpCard: Optional<Int> = nil
+    var indexOfTheOnlyFaceUpCard: Optional<Int> {
+        get {
+            var faceUpCardIndices: Array<Int>
+            faceUpCardIndices = cards.indices.filter({cards[$0].isFaceUp})
+            return faceUpCardIndices.onlyOne ? faceUpCardIndices.first : nil
+        }
+        set {
+            for index in cards.indices {
+                cards[index].isFaceUp = index == newValue
+            }
+        }
+    }
 	
 	/// Mutating self by change the isFaceUp property of chosen card
 	/// - Parameter card: is player selected card
@@ -27,15 +38,11 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
                     cards[chosenIndex].isMatched = true
                     cards[potentialMatchIndex].isMatched = true
                 }
-                indexOfTheOnlyFaceUpCard = nil
+                cards[chosenIndex].isFaceUp = true
             } else {
-                for index in cards.indices {
-                    cards[index].isFaceUp = false
-                }
                 indexOfTheOnlyFaceUpCard = chosenIndex
             }
             
-            cards[chosenIndex].isFaceUp = true
             
         }
  	}
