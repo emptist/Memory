@@ -31,17 +31,16 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         guard let chosenIndex = cards.firstIndex(matching: card) else {return}
         
         if !cards[chosenIndex].isFaceUp && !cards[chosenIndex].isMatched {
-            if let potentialMatchIndex = indexOfTheOnlyFaceUpCard {
-                if cards[chosenIndex].content == cards[potentialMatchIndex].content {
-                    cards[chosenIndex].isMatched = true
-                    cards[potentialMatchIndex].isMatched = true
-                }
-                cards[chosenIndex].isFaceUp = true
-            } else {
+            guard let otherIndex = indexOfTheOnlyFaceUpCard else {
                 indexOfTheOnlyFaceUpCard = chosenIndex
+                return
             }
             
-            
+            if cards[chosenIndex].content == cards[otherIndex].content {
+                cards[chosenIndex].isMatched = true
+                cards[otherIndex].isMatched = true
+            }
+            cards[chosenIndex].isFaceUp = true
         }
  	}
 	
