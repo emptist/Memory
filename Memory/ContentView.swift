@@ -8,23 +8,31 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
-	@ObservedObject var emojiGame: EmojiMemoryGame
-	
-	var body: some View {
-		
-        Grid(items: emojiGame.cards, makeViewFor: { card in
+    var body: some View {
+        GameView(emojiGame:EmojiMemoryGame())
+    }
+}
+
+
+
+struct GameView: View {
+    @ObservedObject var emojiGame: EmojiMemoryGame
+    
+    var body: some View {
+        
+        Grid(items: emojiGame.cards) { card in
             CardView(card: card)
                 .padding(0.5)
                 .onTapGesture {
                     self.emojiGame.choose(card: card)
             }
-        })
+        }
         .padding()
         .foregroundColor(Color.orange)
-	}
+    }
 }
-
 
 
 
@@ -33,9 +41,9 @@ struct CardView: View {
 	var card: MemoryGame<String>.Card
 	
 	var body: some View {
-		GeometryReader(content: { geometry in
+        GeometryReader { geometry in
 			self.viewBody(for: geometry.size)
-		})
+        }
 	}
 	
 	private func viewBody(for size: CGSize) -> some View {
@@ -65,7 +73,7 @@ struct CardView: View {
 
 struct ContentView_Previews: PreviewProvider {
 	static var previews: some View {
-		ContentView(emojiGame: EmojiMemoryGame())
+		ContentView()
 	}
 }
 

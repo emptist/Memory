@@ -22,15 +22,15 @@ struct Grid<Item, ItemView>: View where Item: Identifiable, ItemView: View {
 
     
     var body: some View {
-        GeometryReader(content:{ geometry in
+        GeometryReader { geometry in
             self.viewBody(for: GridLayout(itemCount: self.items.count, in: geometry.size))
-        })
+        }
     }
     
     private func viewBody(for layout: GridLayout) -> some View {
-        ForEach(items, content: { subview in
+        ForEach(items) { subview in
             self.viewBody(for: subview, in: layout)
-        })
+        }
     }
     
     private func viewBody(for subview: Item, in layout: GridLayout) -> some View {
