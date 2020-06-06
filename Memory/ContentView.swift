@@ -24,7 +24,7 @@ struct GameView: View {
         
         Grid(items: emojiGame.cards) { card in
             CardView(card: card)
-                .padding(0.5)
+                .padding(5)
                 .onTapGesture {
                     self.emojiGame.choose(card: card)
             }
@@ -47,13 +47,16 @@ struct CardView: View {
 	}
 	
 	private func viewBody(for size: CGSize) -> some View {
-		ZStack {
+        //@ViewBuilder
+        //func front(of card: MemoryGame.Card) -> some View {}
+        
+		return ZStack {
 			if card.isFaceUp {
-				RoundedRectangle(cornerRadius: radius).fill(Color.white)
-				RoundedRectangle(cornerRadius: radius).stroke()
-				
-				Text(card.content)
-				
+                RoundedRectangle(cornerRadius: radius).fill(Color.white)
+                RoundedRectangle(cornerRadius: radius).stroke()
+                
+                Text(card.content)
+                //front(of: card)
 			} else {
                 if !card.isMatched {
                     RoundedRectangle(cornerRadius: radius).fill()
@@ -66,6 +69,7 @@ struct CardView: View {
 	
 	private let radius:CGFloat = 10.0
 	private let k:CGFloat = 0.75
+    
 }
 
 
