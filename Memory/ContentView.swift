@@ -54,7 +54,7 @@ struct CardView: View {
 			if card.isFaceUp {
                 RoundedRectangle(cornerRadius: radius).fill(Color.white)
                 RoundedRectangle(cornerRadius: radius).stroke()
-                
+                Circle().padding(5).opacity(0.5)
                 Text(card.content)
                 //front(of: card)
 			} else {
@@ -68,7 +68,7 @@ struct CardView: View {
 	}
 	
 	private let radius:CGFloat = 10.0
-	private let k:CGFloat = 0.75
+	private let k:CGFloat = 0.73
     
 }
 
@@ -77,7 +77,9 @@ struct CardView: View {
 
 struct ContentView_Previews: PreviewProvider {
 	static var previews: some View {
-		ContentView()
+        let game = EmojiMemoryGame()
+        game.choose(card: game.cards.last!)
+		return GameView(emojiGame: game)
 	}
 }
 
