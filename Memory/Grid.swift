@@ -9,31 +9,34 @@
 import SwiftUI
 
 /// Grid of items, with automatic sizing and positioning. The manual defined init func is not needed. However, if it's used then the wrapper @escaping must be used
-struct Grid<Item,ItemView>: View where Item: Identifiable, ItemView: View {
+struct Grid<Item, ItemView>: View where Item: Identifiable, ItemView: View {
     private(set) var items: Array<Item>
-    private(set) var viewForItem: (Item) -> ItemView // MARK: - @escaping not needed here
+    private(set) var makeViewFor: (Item) -> ItemView
+    
+    ///  Note:  @escaping is needed here for swift to detect memory cycle
     
 //    init(_ items:[Item], content viewForItem: @escaping (Item) -> ItemView) {
 //        self.items = items
 //        self.viewForItem = viewForItem
 //    }
-//    
+
+    
     var body: some View {
-        GeometryReader(content: { geometry in
-            self.viewBody(for: GridLayout(itemCount: self.items.count,in: geometry.size))
+        GeometryReader(content:{ geometry in
+            self.viewBody(for: GridLayout(itemCount:self.items.count, in:geometry.size))
         })
     }
     
     private func viewBody(for layout: GridLayout) -> some View {
-        ForEach(items, content: { item in
-            self.viewBody(for: item, in: layout)
+        ForEach(items, content: { subview in
+            self.viewBody(for: subview, in: layout)
         })
     }
     
-    private func viewBody(for item: Item,in layout: GridLayout) -> some View {
-        let index = items.firstIndex(matching: item)! // an index should always be there
-        return self.viewForItem(item)
-            .frame(width: layout.itemSize.width, height:layout.itemSize.height)
+    private func viewBody(for subview: Item, in layout: GridLayout) -> some View {
+        let index = items.firstIndex(matching: subview)! // an index should always be there
+        return self.makeViewFor(subview)
+            .frame(width: layout.itemSize.width, height: layout.itemSize.height)
             .position(layout.location(ofItemAt: index))
     }
     

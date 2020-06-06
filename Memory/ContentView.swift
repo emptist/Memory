@@ -13,7 +13,7 @@ struct ContentView: View {
 	
 	var body: some View {
 		
-        Grid(items: emojiGame.cards, viewForItem: { card in
+        Grid(items: emojiGame.cards, makeViewFor: { card in
             CardView(card: card)
                 .padding(0.5)
                 .onTapGesture {
