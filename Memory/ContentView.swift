@@ -46,38 +46,22 @@ struct CardView: View {
         }
 	}
 	
-	private func viewBody(for size: CGSize) -> some View {
-        //@ViewBuilder
-        //func front(of card: MemoryGame.Card) -> some View {}
-        
-//        ZStack {
-//			if card.isFaceUp {
-//                RoundedRectangle(cornerRadius: radius).fill(Color.white)
-//                RoundedRectangle(cornerRadius: radius).stroke()
-//                Pie(startAngle: Angle(degrees: 270), endAngle: Angle(degrees: 30))
-//                    .padding(5).opacity(0.5)
-//                Text(card.content)
-//                //front(of: card)
-//			} else {
-//                if !card.isMatched {
-//                    RoundedRectangle(cornerRadius: radius).fill()
-//                }
-//
-//			}
-//		}
-        
-        ZStack {
-            Pie(startAngle: Angle(degrees: 270), endAngle: Angle(degrees: 30))
-                .padding(5).opacity(0.2)
-            Text(card.content)
-
+    @ViewBuilder
+    private func viewBody(for size: CGSize) -> some View {
+        if card.isFaceUp || !card.isMatched {
+            ZStack {
+                Pie(startAngle: Angle(degrees: 270), endAngle: Angle(degrees: 30))
+                    .padding(5).opacity(0.2)
+                Text(card.content)
+                
+            }
+            .cardify(isFaceUp: card.isFaceUp)
+            .font(.system(size: k*min(size.width,size.height)))
         }
-        .cardify(isFaceUp: card.isFaceUp)
-		.font(.system(size: k*min(size.width,size.height)))
 	}
 	
 	//private let radius:CGFloat = 10.0
-	private let k:CGFloat = 0.73
+    private let k:CGFloat = 0.75
     
 }
 

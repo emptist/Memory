@@ -23,12 +23,12 @@ struct Cardify: ViewModifier {
         }
     }
     private let radius: CGFloat = 10.0
-    private let linewidth: CGFloat = 0.75
+    private let linewidth: CGFloat = 3
 }
 
 
 extension View {
     func cardify(isFaceUp: Bool) -> some View {
-        self.modifier(Cardify(isFaceUp: isFaceUp))
+        modifier(Cardify(isFaceUp: isFaceUp))
     }
 }
