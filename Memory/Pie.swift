@@ -10,6 +10,17 @@ import SwiftUI
 
 struct Pie: Shape {
     var startAngle,endAngle: Angle
+    
+    var animatableData: AnimatablePair<Double, Double> {
+        get {
+            AnimatablePair(startAngle.radians, endAngle.radians)
+        }
+        set {
+            startAngle = Angle.radians(newValue.first)
+            endAngle = Angle.radians(newValue.second)
+        }
+    }
+    
     var clockwise: Bool = true
     
     /// path is required to conform to Shape protocal
