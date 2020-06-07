@@ -36,4 +36,8 @@ class EmojiMemoryGame: ObservableObject {
 	func choose(card:MemoryGame<String>.Card) -> Void {
 		game.choose(card: card)
 	}
+    
+    func createGame() -> Void {
+        game = EmojiMemoryGame.createGame()
+    }
 }
