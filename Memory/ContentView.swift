@@ -22,15 +22,21 @@ struct GameView: View {
     
     var body: some View {
         
-        Grid(items: emojiGame.cards) { card in
-            CardView(card: card)
-                .padding(5)
-                .onTapGesture {
-                    self.emojiGame.choose(card: card)
+        VStack {
+            Grid(items: emojiGame.cards) { card in
+                CardView(card: card)
+                    .padding(5)
+                    .onTapGesture {
+                        self.emojiGame.choose(card: card)
+                }
             }
+            .padding()
+            .foregroundColor(Color.orange)
+            
+            Button(action: {
+                self.emojiGame.reset()
+            }, label: {Text("New Game")})
         }
-        .padding()
-        .foregroundColor(Color.orange)
     }
 }
 

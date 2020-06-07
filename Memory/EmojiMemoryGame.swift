@@ -14,7 +14,7 @@ class EmojiMemoryGame: ObservableObject {
 	/// Game model, with @Published property wrapper to catch any mutating on it
 	@Published private var game: MemoryGame<String> = EmojiMemoryGame.createGame()
 	
-	private static func createGame() -> MemoryGame<String> {
+	private static func createGame () -> MemoryGame<String> {
 		let emojis = ["🐵","🍎","🌮","🐋"]
 		return MemoryGame<String>(numberPairsOfCards:emojis.count, cardFactor: {pairIndex in
 			emojis[pairIndex]
@@ -33,11 +33,11 @@ class EmojiMemoryGame: ObservableObject {
 	/// Ask model to choose when user tapped a card, and will cause mutating on the model
 	/// - Parameter card: that user tapped on
 	/// - Returns: Void
-	func choose(card:MemoryGame<String>.Card) -> Void {
+	func choose (card:MemoryGame<String>.Card) -> Void {
 		game.choose(card: card)
 	}
     
-    func createGame() -> Void {
+    func reset () -> Void {
         game = EmojiMemoryGame.createGame()
     }
 }
