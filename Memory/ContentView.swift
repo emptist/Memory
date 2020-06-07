@@ -27,15 +27,25 @@ struct GameView: View {
                 CardView(card: card)
                     .padding(5)
                     .onTapGesture {
-                        self.emojiGame.choose(card: card)
+                        withAnimation(.easeInOut(duration:1)) {
+                            self.emojiGame.choose(card: card)
+                        }
+                        
                 }
             }
             .padding()
             .foregroundColor(Color.orange)
             
-            Button(action: {
-                self.emojiGame.reset()
-            }, label: {Text("New Game")})
+            Button(
+                action: {
+                    withAnimation(.easeInOut(duration:1)) {
+                        self.emojiGame.reset()
+                    }
+                },
+                label: {
+                    Text("New Game")// String in red color suggests localization needed
+                }
+            )
         }
     }
 }
@@ -64,7 +74,7 @@ struct CardView: View {
                     .animation(card.isMatched ? Animation.easeInOut(duration: 1).repeatForever(autoreverses: false) : .default)
             }
             .cardify(isFaceUp: card.isFaceUp)
-            
+            .transition(AnyTransition.scale)
         }
 	}
 	
