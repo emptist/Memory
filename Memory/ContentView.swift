@@ -55,7 +55,7 @@ struct CardView: View {
                 Text(card.content)
                     .font(.system(size: k*min(size.width,size.height)))
                     .rotationEffect(Angle.degrees(card.isMatched ? 360 : 0))
-                    .animation(Animation.easeInOut(duration: 1).repeatForever(autoreverses: false))
+                    .animation(card.isMatched ? Animation.easeInOut(duration: 1).repeatForever(autoreverses: false) : .default)
             }
             .cardify(isFaceUp: card.isFaceUp)
             
