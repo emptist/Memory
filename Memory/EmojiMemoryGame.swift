@@ -33,7 +33,7 @@ class EmojiMemoryGame: ObservableObject {
 	/// Ask model to choose when user tapped a card, and will cause mutating on the model
 	/// - Parameter card: that user tapped on
 	/// - Returns: Void
-	func choose (card:MemoryGame<String>.Card) -> Void {
+    func choose (card:MemoryGame<String>.Card) -> Void {
 		game.choose(card: card)
 	}
     
@@ -42,4 +42,10 @@ class EmojiMemoryGame: ObservableObject {
     }
     
     
+}
+
+struct EmojiMemoryGame_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+    }
 }
