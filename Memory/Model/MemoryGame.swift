@@ -37,7 +37,8 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
                 return
             }
             
-            if cards[chosenIndex].content == cards[otherIndex].content {
+            //if cards[chosenIndex].content == cards[otherIndex].content {
+            if cards[chosenIndex] ~= cards[otherIndex] {
                 cards[chosenIndex].isMatched = true
                 cards[otherIndex].isMatched = true
             }
@@ -55,8 +56,9 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
 		}
         cards.shuffle()
 	}
-	
-	struct Card: Identifiable {
+
+    
+    struct Card: Identifiable {
         var isFaceUp: Bool = false {
             didSet {
                 if isFaceUp {
@@ -71,11 +73,13 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
                 stopUsingBonusTime()
             }
         }
-		var content: CardContent
-		var id: Int
-	
-    
-    
+        var content: CardContent
+        
+        
+        var id: Int
+        
+        
+        
         // MARK: - Bonus Time
         
         /// This could give matching bonus points
@@ -125,9 +129,15 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
             pastFaceUpTime = faceUpTime
             self.lastFaceUpDate = nil
         }
-
+        
     }
-	
     
-    
+
+}
+
+
+extension MemoryGame.Card: Equatable where CardContent: Equatable {
+    static func ~= (lhs: Self, rhs: Self) -> Bool {
+        lhs.content == rhs.content
+    }
 }
